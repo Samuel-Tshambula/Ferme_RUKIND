@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Upload, X, Image as ImageIcon } from 'lucide-react';
 import { uploadAPI } from '../services/api';
-
-const API_BASE_URL = 'http://localhost:5500';
+import { config } from '../config/env';
 
 interface ImageUploadProps {
   onImageUploaded: (imageUrl: string) => void;
@@ -23,7 +22,7 @@ export const ImageUpload: React.FC<ImageUploadProps> = ({
     if (!imageUrl) return null;
     if (imageUrl.startsWith('http')) return imageUrl;
     if (imageUrl.startsWith('data:')) return imageUrl; // Data URL pour l'aperçu temporaire
-    return `${API_BASE_URL}${imageUrl}`;
+    return `${config.API_URL}${imageUrl}`;
   };
 
   // Initialiser l'aperçu

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Minus, Plus, Trash2, ArrowRight, ShoppingBag } from 'lucide-react';
 import { useCart } from '../contexts/CartContext';
 import { formatPrice } from '../utils/currency';
+import { config } from '../config/env';
 
 export const Cart: React.FC = () => {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export const Cart: React.FC = () => {
           </div>
 
           <div className="divide-y divide-gray-100">
-            {cartItems.map((item, index) => {
+            {cartItems.map((item) => {
               const productId = (item.product as any)._id || item.product.id;
               const variantKey = item.selectedVariant ? `${productId}-${item.selectedVariant.unit}` : productId;
               return (
@@ -53,7 +54,7 @@ export const Cart: React.FC = () => {
                 <div className="flex flex-col sm:flex-row sm:items-center gap-4">
                   <div className="flex items-center gap-4 flex-1">
                     <img
-                      src={item.product.image.startsWith('http') ? item.product.image : `http://localhost:5500${item.product.image}`}
+                      src={item.product.image.startsWith('http') ? item.product.image : `${config.API_URL}${item.product.image}`}
                       alt={item.product.name}
                       className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl shadow-md"
                     />

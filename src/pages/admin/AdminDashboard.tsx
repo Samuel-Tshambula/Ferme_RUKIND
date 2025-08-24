@@ -8,6 +8,7 @@ import { Product } from '../../types';
 import { formatPrice } from '../../utils/currency';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { NotificationService } from '../../services/notificationService';
+import { config } from '../../config/env';
 
 interface Order {
   _id: string;
@@ -202,7 +203,7 @@ export const AdminDashboard: React.FC = () => {
           <div className="p-6 space-y-6">
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <img src={product.image.startsWith('http') ? product.image : `http://localhost:5500${product.image}`} alt={product.name} className="w-full h-48 object-cover rounded-lg" />
+                <img src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`} alt={product.name} className="w-full h-48 object-cover rounded-lg" />
               </div>
               <div className="space-y-4">
                 <div>
@@ -967,7 +968,7 @@ export const AdminDashboard: React.FC = () => {
                       <tr key={product._id} className="hover:bg-gray-700 transition-colors">
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
-                            <img className="h-12 w-12 rounded-lg object-cover border border-gray-600" src={product.image.startsWith('http') ? product.image : `http://localhost:5500${product.image}`} alt={product.name} />
+                            <img className="h-12 w-12 rounded-lg object-cover border border-gray-600" src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`} alt={product.name} />
                             <div className="ml-4">
                               <div className="text-sm font-medium text-white">{product.name}</div>
                               <div className="text-sm text-gray-400">{product.description.substring(0, 40)}...</div>

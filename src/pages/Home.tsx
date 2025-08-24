@@ -4,6 +4,7 @@ import { ArrowRight, Leaf, Truck, Heart, Star } from 'lucide-react';
 import { productsAPI } from '../services/api';
 import { Product } from '../types';
 import { formatPrice } from '../utils/currency';
+import { config } from '../config/env';
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -171,7 +172,7 @@ export const Home: React.FC = () => {
                   <div key={product._id || product.id} className={`bg-gradient-to-br ${gradients[index]} rounded-xl p-6 hover:shadow-lg transition-all group cursor-pointer h-full flex flex-col`} onClick={() => navigate(`/products/${(product as any)._id || product.id}`)}>
                     <div className="relative mb-4">
                       <img 
-                        src={product.image.startsWith('http') ? product.image : `http://localhost:5500${product.image}`} 
+                        src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`} 
                         alt={product.name} 
                         className="w-full h-32 sm:h-40 object-cover rounded-lg group-hover:scale-105 transition-transform" 
                       />

@@ -1,4 +1,6 @@
-const API_BASE_URL = 'http://localhost:5500/api';
+import { config } from '../config/env';
+
+const API_BASE_URL = `${config.API_URL}/api`;
 
 // Configuration axios-like pour les requêtes
 const apiRequest = async (endpoint: string, options: RequestInit = {}) => {
@@ -107,7 +109,7 @@ export const uploadAPI = {
     formData.append('image', file);
     
     const token = localStorage.getItem('adminToken');
-    const response = await fetch(`${API_BASE_URL}/upload/image`, {
+    const response = await fetch(`${config.API_URL}/api/upload/image`, {
       method: 'POST',
       headers: {
         ...(token && { Authorization: `Bearer ${token}` }),

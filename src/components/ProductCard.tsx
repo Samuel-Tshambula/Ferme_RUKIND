@@ -5,6 +5,7 @@ import { Product, ProductVariant } from '../types';
 import { formatPrice } from '../utils/currency';
 import { useCart } from '../contexts/CartContext';
 import { useCartNotification } from '../contexts/CartNotificationContext';
+import { config } from '../config/env';
 
 interface ProductCardProps {
   product: Product;
@@ -68,7 +69,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
     <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100 flex flex-col h-full">
       <div className="relative overflow-hidden">
         <img
-          src={product.image.startsWith('http') ? product.image : `http://localhost:5500${product.image}`}
+          src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`}
           alt={product.name}
           className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"
         />
@@ -204,7 +205,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             
             <div className="mb-4">
               <img 
-                src={product.image.startsWith('http') ? product.image : `http://localhost:5500${product.image}`}
+                src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`}
                 alt={product.name}
                 className="w-full h-32 object-cover rounded-lg mb-3"
               />

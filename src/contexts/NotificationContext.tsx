@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { io } from 'socket.io-client';
 import { NotificationService } from '../services/notificationService';
+import { config } from '../config/env';
 
 interface Notification {
   id: string;
@@ -44,7 +45,7 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
     // Vérifier si on est dans l'admin
     const isAdmin = window.location.pathname.startsWith('/admin');
     if (isAdmin) {
-      const socketInstance = io('http://localhost:5500');
+      const socketInstance = io(config.SOCKET_URL);
 
       socketInstance.on('newOrder', (orderData) => {
         const newNotification: Notification = {
