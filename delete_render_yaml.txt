@@ -1,0 +1,3 @@
+Supprimez le fichier public/render.yaml car il peut créer des conflits avec les règles de réécriture de l'interface Render.
+
+Commande : rm public/render.yaml
