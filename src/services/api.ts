@@ -4,7 +4,6 @@ const API_BASE_URL = `${config.API_URL}/api`;
 
 // Configuration axios-like pour les requêtes
 const apiRequest = async (endpoint: string, options: RequestInit = {}) => {
-  alert('url : ' + API_BASE_URL )
   const url = `${API_BASE_URL}${endpoint}`;
   const token = localStorage.getItem('adminToken');
   

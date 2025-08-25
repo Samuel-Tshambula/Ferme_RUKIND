@@ -129,10 +129,10 @@ export const AdminLogin: React.FC = () => {
           <div className="mt-4 sm:mt-6 text-center">
             <div className="bg-blue-900 border border-blue-700 rounded-lg p-3 sm:p-4">
               <p className="text-xs sm:text-sm text-blue-300 font-medium mb-2">Identifiants de démonstration :</p>
-              <p className="text-xs text-blue-400">
+              {/* <p className="text-xs text-blue-400">
                 <strong>Utilisateur :</strong> admin<br />
                 <strong>Mot de passe :</strong> admin123
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
