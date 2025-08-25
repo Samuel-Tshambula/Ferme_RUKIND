@@ -1,0 +1,7 @@
+Supprimez ces fichiers qui ne servent plus :
+- public/netlify.toml
+- public/.htaccess
+
+Gardez seulement :
+- public/_redirects
+- public/render.yaml

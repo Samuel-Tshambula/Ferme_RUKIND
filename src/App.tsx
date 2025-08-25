@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Breadcrumbs } from './components/Breadcrumbs';
 import { ProtectedRoute } from './components/ProtectedRoute';
@@ -70,8 +70,8 @@ function App() {
                 </>
               } />
               <Route path="/order-confirmation" element={<OrderConfirmation />} />
-              <Route path="/legal" element={<LegalNotice />} />
-              <Route path="/terms" element={<TermsOfService />} />
+              <Route path="/legal" element={<main><LegalNotice /></main>} />
+              <Route path="/terms" element={<main><TermsOfService /></main>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             
@@ -110,8 +110,8 @@ function App() {
                 
                 <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
                   <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-6 mb-4">
-                    <a href="/legal" className="hover:text-white transition-colors text-sm">Mentions légales</a>
-                    <a href="/terms" className="hover:text-white transition-colors text-sm">CGV</a>
+                    <Link to="/legal" className="hover:text-white transition-colors text-sm">Mentions légales</Link>
+                    <Link to="/terms" className="hover:text-white transition-colors text-sm">CGV</Link>
                   </div>
                   <p>&copy; {new Date().getFullYear()} Rukind Farm. Tous droits réservés.</p>
                 </div>
