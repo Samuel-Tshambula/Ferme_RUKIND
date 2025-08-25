@@ -340,7 +340,7 @@ export const ProductDetail: React.FC = () => {
                             handleAddToCart();
                           }
                         }}
-                        disabled={product.stock === 0 || (!inCart && selectedVariant && quantity < (selectedVariant.minOrderQuantity || 1))}
+                        disabled={product.stock === 0 || (!inCart && selectedVariant && quantity < (selectedVariant.minOrderQuantity || 1)) || false}
                         className={`w-full px-6 py-3 rounded-lg font-medium transition-colors flex items-center justify-center space-x-2 ${
                           inCart 
                             ? 'bg-red-500 hover:bg-red-600 text-white'
