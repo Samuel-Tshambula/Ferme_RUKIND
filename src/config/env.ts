@@ -1,20 +1,6 @@
 // Configuration des variables d'environnement
-// Compatible avec Render et développement local
-const getEnvVar = (name: string, defaultValue: string) => {
-  // En développement, utiliser les valeurs par défaut
-  if (typeof window !== 'undefined') {
-    // Vérifier si les variables sont injectées par React
-    try {
-      // @ts-ignore
-      return process?.env?.[name] || defaultValue;
-    } catch {
-      return defaultValue;
-    }
-  }
-  return defaultValue;
-};
-
+// Compatible avec Vite et Render
 export const config = {
-  API_URL: getEnvVar('REACT_APP_API_URL', 'http://localhost:5500'),
-  SOCKET_URL: getEnvVar('REACT_APP_SOCKET_URL', 'http://localhost:5500'),
+  API_URL: import.meta.env.VITE_API_URL || import.meta.env.REACT_APP_API_URL || 'https://rukind-farm.onrender.com',
+  SOCKET_URL: import.meta.env.VITE_SOCKET_URL || import.meta.env.REACT_APP_SOCKET_URL || 'https://rukind-farm.onrender.com',
 };
