@@ -33,50 +33,62 @@ export const NotificationProvider: React.FC<{ children: ReactNode }> = ({ childr
     if (savedNotifications) {
       try {
         const parsed = JSON.parse(savedNotifications);
-        setNotifications(parsed.map((n: any) => ({
+        const loadedNotifications = parsed.map((n: any) => ({
           ...n,
           timestamp: new Date(n.timestamp)
-        })));
+        }));
+        setNotifications(loadedNotifications);
+        
+        // Si l'admin se connecte et qu'il y a des notifications non lues, envoyer une notification push
+        const isAdmin = window.location.pathname.startsWith('/admin');
+        const unreadNotifications = loadedNotifications.filter((n: Notification) => !n.read);
+        if (isAdmin && unreadNotifications.length > 0) {
+          // Attendre un peu pour que la page se charge
+          setTimeout(() => {
+            NotificationService.showConnectionNotification(unreadNotifications.length);
+          }, 1000);
+        }
       } catch (error) {
         console.error('Erreur chargement notifications:', error);
       }
     }
 
-    // Vérifier si on est dans l'admin
-    const isAdmin = window.location.pathname.startsWith('/admin');
-    if (isAdmin) {
-      const socketInstance = io(config.SOCKET_URL);
+    // Toujours écouter les nouvelles commandes, même si pas dans l'admin
+    const socketInstance = io(config.SOCKET_URL);
 
-      socketInstance.on('newOrder', (orderData) => {
-        const newNotification: Notification = {
-          id: Date.now().toString(),
-          orderId: orderData.orderId,
-          orderNumber: orderData.orderNumber,
-          customerName: orderData.customerName,
-          totalAmount: orderData.totalAmount,
-          deliveryType: orderData.deliveryType,
-          timestamp: new Date(),
-          read: false
-        };
+    socketInstance.on('newOrder', (orderData) => {
+      const newNotification: Notification = {
+        id: Date.now().toString(),
+        orderId: orderData.orderId,
+        orderNumber: orderData.orderNumber,
+        customerName: orderData.customerName,
+        totalAmount: orderData.totalAmount,
+        deliveryType: orderData.deliveryType,
+        timestamp: new Date(),
+        read: false
+      };
 
-        // Afficher notification push du navigateur
+      // Sauvegarder la notification même si pas dans l'admin
+      setNotifications(prev => {
+        const updated = [newNotification, ...prev];
+        localStorage.setItem('admin-notifications', JSON.stringify(updated));
+        return updated;
+      });
+
+      // Afficher notification push seulement si dans l'admin
+      const isAdmin = window.location.pathname.startsWith('/admin');
+      if (isAdmin) {
         NotificationService.showOrderNotification(
           orderData.orderNumber,
           orderData.customerName,
           orderData.totalAmount
         );
+      }
+    });
 
-        setNotifications(prev => {
-          const updated = [newNotification, ...prev];
-          localStorage.setItem('admin-notifications', JSON.stringify(updated));
-          return updated;
-        });
-      });
-
-      return () => {
-        socketInstance.disconnect();
-      };
-    }
+    return () => {
+      socketInstance.disconnect();
+    };
   }, []);
 
   const markAsRead = (notificationId: string) => {

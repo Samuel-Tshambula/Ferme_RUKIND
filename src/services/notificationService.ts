@@ -43,4 +43,16 @@ export class NotificationService {
       }
     );
   }
+
+  static showConnectionNotification(unreadCount: number) {
+    return this.showNotification(
+      `📬 Notifications en attente`,
+      {
+        body: `Vous avez ${unreadCount} nouvelle${unreadCount > 1 ? 's' : ''} commande${unreadCount > 1 ? 's' : ''} non lue${unreadCount > 1 ? 's' : ''}`,
+        icon: '/logo.png',
+        tag: 'admin-connection',
+        requireInteraction: true
+      }
+    );
+  }
 }

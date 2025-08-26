@@ -191,37 +191,37 @@ export const AdminDashboard: React.FC = () => {
     if (!product) return null;
     
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="bg-gray-800 rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-          <div className="flex justify-between items-center p-6 border-b border-gray-700">
-            <h3 className="text-xl font-bold text-white">Détails du produit</h3>
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+        <div className="bg-gray-800 rounded-lg sm:rounded-xl max-w-2xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+          <div className="flex justify-between items-center p-4 sm:p-6 border-b border-gray-700">
+            <h3 className="text-lg sm:text-xl font-bold text-white">Détails du produit</h3>
             <button onClick={onClose} className="text-gray-400 hover:text-white">
-              <X className="h-6 w-6" />
+              <X className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
           </div>
           
-          <div className="p-6 space-y-6">
-            <div className="grid md:grid-cols-2 gap-6">
+          <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
               <div>
-                <img src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`} alt={product.name} className="w-full h-48 object-cover rounded-lg" />
+                <img src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`} alt={product.name} className="w-full h-40 sm:h-48 object-cover rounded-lg" />
               </div>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Nom</label>
-                  <p className="text-white text-lg font-semibold">{product.name}</p>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Nom</label>
+                  <p className="text-white text-base sm:text-lg font-semibold">{product.name}</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Catégorie</label>
-                  <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-sm">{product.category}</span>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Catégorie</label>
+                  <span className="inline-block bg-blue-600 text-white px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm">{product.category}</span>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Prix</label>
-                    <p className="text-green-400 text-xl font-bold">{formatPrice(product.price)}</p>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Prix</label>
+                    <p className="text-green-400 text-lg sm:text-xl font-bold">{formatPrice(product.price)}</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Stock</label>
-                    <p className={`text-lg font-semibold ${
+                    <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Stock</label>
+                    <p className={`text-base sm:text-lg font-semibold ${
                       product.stock > 10 ? 'text-green-400' :
                       product.stock > 0 ? 'text-yellow-400' : 'text-red-400'
                     }`}>{product.stock > 0 ? 'Disponible' : 'Indisponible'}</p>
@@ -231,8 +231,8 @@ export const AdminDashboard: React.FC = () => {
             </div>
             
             <div>
-              <label className="block text-sm font-medium text-gray-300 mb-2">Description</label>
-              <p className="text-gray-300">{product.description}</p>
+              <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Description</label>
+              <p className="text-gray-300 text-sm sm:text-base">{product.description}</p>
             </div>
           </div>
         </div>
@@ -244,38 +244,38 @@ export const AdminDashboard: React.FC = () => {
     if (!order) return null;
     
     return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-        <div className="bg-gray-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-          <div className="flex justify-between items-center p-6 border-b border-gray-700">
-            <h3 className="text-xl font-bold text-white">Détails de la commande #{order.orderNumber}</h3>
-            <button onClick={onClose} className="text-gray-400 hover:text-white">
-              <X className="h-6 w-6" />
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-2 sm:p-4">
+        <div className="bg-gray-800 rounded-lg sm:rounded-xl max-w-4xl w-full max-h-[95vh] sm:max-h-[90vh] overflow-y-auto">
+          <div className="flex justify-between items-center p-4 sm:p-6 border-b border-gray-700">
+            <h3 className="text-base sm:text-lg lg:text-xl font-bold text-white truncate pr-2">Détails commande #{order.orderNumber}</h3>
+            <button onClick={onClose} className="text-gray-400 hover:text-white flex-shrink-0">
+              <X className="h-5 w-5 sm:h-6 sm:w-6" />
             </button>
           </div>
           
-          <div className="p-6 space-y-6">
+          <div className="p-4 sm:p-6 space-y-4 sm:space-y-6">
             {/* Informations client et commande */}
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              <div className="space-y-3 sm:space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Client</label>
-                  <p className="text-white text-lg font-semibold">{order.customerInfo.name}</p>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Client</label>
+                  <p className="text-white text-base sm:text-lg font-semibold">{order.customerInfo.name}</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Téléphone</label>
-                  <p className="text-gray-300">{order.customerInfo.phone}</p>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Téléphone</label>
+                  <p className="text-gray-300 text-sm sm:text-base">{order.customerInfo.phone}</p>
                 </div>
                 {order.customerInfo.email && (
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                    <p className="text-gray-300">{order.customerInfo.email}</p>
+                    <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Email</label>
+                    <p className="text-gray-300 text-sm sm:text-base break-all">{order.customerInfo.email}</p>
                   </div>
                 )}
               </div>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Statut</label>
-                  <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Statut</label>
+                  <span className={`inline-flex px-2 sm:px-3 py-1 text-xs sm:text-sm font-semibold rounded-full ${
                     order.status === 'Livrée' ? 'bg-green-900 text-green-300' :
                     order.status === 'Préparée' ? 'bg-yellow-900 text-yellow-300' :
                     order.status === 'Annulée' ? 'bg-red-900 text-red-300' :
@@ -285,20 +285,20 @@ export const AdminDashboard: React.FC = () => {
                   </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Type</label>
-                  <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Type</label>
+                  <span className={`inline-flex px-2 sm:px-3 py-1 text-xs sm:text-sm font-semibold rounded-full ${
                     order.deliveryType === 'Livraison' ? 'bg-blue-900 text-blue-300' : 'bg-orange-900 text-orange-300'
                   }`}>
                     {order.deliveryType}
                   </span>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Date</label>
-                  <p className="text-gray-300">{new Date(order.createdAt).toLocaleDateString()}</p>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Date</label>
+                  <p className="text-gray-300 text-sm sm:text-base">{new Date(order.createdAt).toLocaleDateString()}</p>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">Total</label>
-                  <p className="text-green-400 text-xl font-bold">{formatPrice(order.totalAmount)}</p>
+                  <label className="block text-xs sm:text-sm font-medium text-gray-300 mb-1 sm:mb-2">Total</label>
+                  <p className="text-green-400 text-lg sm:text-xl font-bold">{formatPrice(order.totalAmount)}</p>
                 </div>
               </div>
             </div>
@@ -397,20 +397,20 @@ export const AdminDashboard: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
           <div className="flex justify-between items-center h-18 sm:h-20">
             {/* Logo et titre */}
-            <div className="flex items-center space-x-4 min-w-0 flex-1">
-              <img src="/logo.png" alt="Logo" className="h-12 sm:h-14 md:h-16 w-auto flex-shrink-0 drop-shadow-lg" />
-              <div className="flex flex-col">
-                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white truncate">
+            <div className="flex items-center space-x-2 sm:space-x-4 min-w-0 flex-1">
+              <img src="/logo.png" alt="Logo" className="h-10 sm:h-12 md:h-14 lg:h-16 w-auto flex-shrink-0 drop-shadow-lg" />
+              <div className="flex flex-col min-w-0">
+                <h1 className="text-sm sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold text-white truncate">
                   Rukind Farm
                 </h1>
-                <p className="text-xs sm:text-sm text-green-400 font-medium">
+                <p className="text-xs sm:text-sm text-green-400 font-medium hidden sm:block">
                   Panneau d'administration
                 </p>
               </div>
             </div>
             
             {/* Actions */}
-            <div className="flex items-center space-x-2 sm:space-x-3 flex-shrink-0">
+            <div className="flex items-center space-x-1 sm:space-x-2 md:space-x-3 flex-shrink-0">
               {/* Notifications avec bouton d'activation intégré */}
               <div className="relative">
                 <button
@@ -421,17 +421,18 @@ export const AdminDashboard: React.FC = () => {
                     }
                     setShowNotifications(!showNotifications);
                   }}
-                  className="relative flex items-center space-x-2 text-gray-300 hover:text-white transition-all duration-200 bg-gray-700 hover:bg-gray-600 px-3 sm:px-4 py-2.5 rounded-xl shadow-lg hover:shadow-xl text-sm font-medium"
+                  className="relative flex items-center space-x-1 sm:space-x-2 text-gray-300 hover:text-white transition-all duration-200 bg-gray-700 hover:bg-gray-600 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl text-xs sm:text-sm font-medium"
                 >
-                  <Bell className="h-5 w-5" />
-                  <span className="hidden sm:inline">Notifications</span>
+                  <Bell className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <span className="hidden md:inline">Notifications</span>
+                  <span className="md:hidden">Notif</span>
                   {unreadCount > 0 && (
-                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse">
+                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 sm:h-5 sm:w-5 flex items-center justify-center font-bold animate-pulse">
                       {unreadCount > 99 ? '99+' : unreadCount}
                     </span>
                   )}
                   {notificationPermission !== 'granted' && (
-                    <span className="absolute -top-1 -left-1 bg-yellow-500 text-yellow-900 text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold" title="Cliquez pour activer les notifications push">
+                    <span className="absolute -top-1 -left-1 bg-yellow-500 text-yellow-900 text-xs rounded-full h-3 w-3 sm:h-4 sm:w-4 flex items-center justify-center font-bold" title="Cliquez pour activer les notifications push">
                       !
                     </span>
                   )}
@@ -439,9 +440,9 @@ export const AdminDashboard: React.FC = () => {
                 
                 {/* Dropdown des notifications */}
                 {showNotifications && (
-                  <div className="absolute right-0 mt-2 w-80 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-50 max-h-96 overflow-y-auto">
-                    <div className="p-4 border-b border-gray-700 flex justify-between items-center">
-                      <h3 className="text-white font-semibold">Notifications ({unreadCount})</h3>
+                  <div className="absolute right-0 mt-2 w-72 sm:w-80 bg-gray-800 border border-gray-700 rounded-lg shadow-xl z-50 max-h-96 overflow-y-auto">
+                    <div className="p-3 sm:p-4 border-b border-gray-700 flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-2 sm:space-y-0">
+                      <h3 className="text-white font-semibold text-sm sm:text-base">Notifications ({unreadCount})</h3>
                       <div className="flex space-x-2">
                         {unreadCount > 0 && (
                           <button
@@ -467,14 +468,14 @@ export const AdminDashboard: React.FC = () => {
                     </div>
                     <div className="max-h-64 overflow-y-auto">
                       {notifications.length === 0 ? (
-                        <div className="p-4 text-gray-400 text-center">
+                        <div className="p-4 text-gray-400 text-center text-sm">
                           Aucune notification
                         </div>
                       ) : (
                         notifications.map(notification => (
                           <div
                             key={notification.id}
-                            className={`p-4 border-b border-gray-700 hover:bg-gray-700 cursor-pointer ${
+                            className={`p-3 sm:p-4 border-b border-gray-700 hover:bg-gray-700 cursor-pointer ${
                               !notification.read ? 'bg-gray-750' : ''
                             }`}
                             onClick={() => {
@@ -484,11 +485,11 @@ export const AdminDashboard: React.FC = () => {
                             }}
                           >
                             <div className="flex justify-between items-start">
-                              <div className="flex-1">
-                                <p className="text-white font-medium text-sm">
+                              <div className="flex-1 min-w-0">
+                                <p className="text-white font-medium text-xs sm:text-sm truncate">
                                   Nouvelle commande #{notification.orderNumber}
                                 </p>
-                                <p className="text-gray-400 text-xs">
+                                <p className="text-gray-400 text-xs truncate">
                                   {notification.customerName} - {formatPrice(notification.totalAmount)}
                                 </p>
                                 <p className="text-gray-500 text-xs">
@@ -509,17 +510,17 @@ export const AdminDashboard: React.FC = () => {
               
               <button
                 onClick={() => navigate('/')}
-                className="flex items-center space-x-2 text-gray-300 hover:text-white transition-all duration-200 bg-blue-600 hover:bg-blue-700 px-3 sm:px-4 py-2.5 rounded-xl shadow-lg hover:shadow-xl text-sm font-medium"
+                className="flex items-center space-x-1 sm:space-x-2 text-gray-300 hover:text-white transition-all duration-200 bg-blue-600 hover:bg-blue-700 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl text-xs sm:text-sm font-medium"
               >
-                <span className="hidden sm:inline">← Site public</span>
-                <span className="sm:hidden">← Site</span>
+                <span className="hidden md:inline">← Site public</span>
+                <span className="md:hidden">← Site</span>
               </button>
               
               <button
                 onClick={handleLogout}
-                className="flex items-center space-x-2 text-white hover:text-gray-200 transition-all duration-200 bg-red-600 hover:bg-red-700 px-3 sm:px-4 py-2.5 rounded-xl shadow-lg hover:shadow-xl text-sm font-medium"
+                className="flex items-center space-x-1 sm:space-x-2 text-white hover:text-gray-200 transition-all duration-200 bg-red-600 hover:bg-red-700 px-2 sm:px-3 md:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl shadow-lg hover:shadow-xl text-xs sm:text-sm font-medium"
               >
-                <LogOut className="h-4 w-4 sm:h-5 sm:w-5" />
+                <LogOut className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5" />
                 <span className="hidden sm:inline">Déconnexion</span>
                 <span className="sm:hidden">Exit</span>
               </button>
@@ -530,21 +531,22 @@ export const AdminDashboard: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 lg:px-8 py-6 sm:py-8 pt-24 sm:pt-28">
         {/* Navigation Tabs */}
-        <div className="mb-8">
-          <nav className="flex space-x-8">
+        <div className="mb-6 sm:mb-8">
+          <nav className="flex space-x-4 sm:space-x-6 md:space-x-8 overflow-x-auto">
             <button
               onClick={() => setActiveTab('overview')}
-              className={`pb-2 px-1 border-b-2 font-medium text-sm transition-colors ${
+              className={`pb-2 px-1 sm:px-2 border-b-2 font-medium text-xs sm:text-sm transition-colors whitespace-nowrap ${
                 activeTab === 'overview'
                   ? 'border-green-500 text-green-400'
                   : 'border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-600'
               }`}
             >
-              Vue d'ensemble
+              <span className="hidden sm:inline">Vue d'ensemble</span>
+              <span className="sm:hidden">Vue</span>
             </button>
             <button
               onClick={() => setActiveTab('products')}
-              className={`pb-2 px-1 border-b-2 font-medium text-sm transition-colors ${
+              className={`pb-2 px-1 sm:px-2 border-b-2 font-medium text-xs sm:text-sm transition-colors whitespace-nowrap ${
                 activeTab === 'products'
                   ? 'border-green-500 text-green-400'
                   : 'border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-600'
@@ -554,7 +556,7 @@ export const AdminDashboard: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveTab('orders')}
-              className={`pb-2 px-1 border-b-2 font-medium text-sm transition-colors relative ${
+              className={`pb-2 px-1 sm:px-2 border-b-2 font-medium text-xs sm:text-sm transition-colors relative whitespace-nowrap ${
                 activeTab === 'orders'
                   ? 'border-green-500 text-green-400'
                   : 'border-transparent text-gray-400 hover:text-gray-200 hover:border-gray-600'
@@ -562,7 +564,7 @@ export const AdminDashboard: React.FC = () => {
             >
               Commandes
               {unreadCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-3 w-3 sm:h-4 sm:w-4 flex items-center justify-center font-bold">
                   {unreadCount > 9 ? '9+' : unreadCount}
                 </span>
               )}
@@ -796,9 +798,9 @@ export const AdminDashboard: React.FC = () => {
         {/* Products Tab */}
         {activeTab === 'products' && (
           <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold text-white">Gestion des produits</h2>
-              <div className="flex space-x-3">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4 sm:space-y-0">
+              <h2 className="text-xl sm:text-2xl font-bold text-white">Gestion des produits</h2>
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 <button
                   onClick={async () => {
                     const inactiveCount = products.filter(p => p.isActive === false).length;
@@ -816,9 +818,9 @@ export const AdminDashboard: React.FC = () => {
                       }
                     }
                   }}
-                  className="flex items-center space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-4 py-3 rounded-lg transition-colors font-medium shadow-lg"
+                  className="flex items-center space-x-1 sm:space-x-2 bg-orange-600 hover:bg-orange-700 text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg transition-colors font-medium shadow-lg text-xs sm:text-sm"
                 >
-                  <Trash2 className="h-4 w-4" />
+                  <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span>Nettoyer</span>
                 </button>
                 <button
@@ -838,17 +840,18 @@ export const AdminDashboard: React.FC = () => {
                       }
                     }
                   }}
-                  className="flex items-center space-x-2 bg-red-600 hover:bg-red-700 text-white px-4 py-3 rounded-lg transition-colors font-medium shadow-lg"
+                  className="flex items-center space-x-1 sm:space-x-2 bg-red-600 hover:bg-red-700 text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg transition-colors font-medium shadow-lg text-xs sm:text-sm"
                 >
-                  <Trash2 className="h-4 w-4" />
+                  <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span>Forcer</span>
                 </button>
                 <button
                   onClick={() => setShowAddProduct(true)}
-                  className="flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors font-medium shadow-lg"
+                  className="flex items-center space-x-1 sm:space-x-2 bg-green-600 hover:bg-green-700 text-white px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-colors font-medium shadow-lg text-xs sm:text-sm"
                 >
-                  <Plus className="h-5 w-5" />
-                  <span>Ajouter un produit</span>
+                  <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
+                  <span className="hidden sm:inline">Ajouter un produit</span>
+                  <span className="sm:hidden">Ajouter</span>
                 </button>
               </div>
             </div>
@@ -956,62 +959,63 @@ export const AdminDashboard: React.FC = () => {
                 <table className="min-w-full divide-y divide-gray-700">
                   <thead className="bg-gray-700">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Produit</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Catégorie</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Prix</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Stock</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Actions</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Produit</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden sm:table-cell">Catégorie</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Prix</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden md:table-cell">Stock</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="bg-gray-800 divide-y divide-gray-700">
                     {filteredProducts.map(product => (
                       <tr key={product._id} className="hover:bg-gray-700 transition-colors">
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-3 sm:px-6 py-4">
                           <div className="flex items-center">
-                            <img className="h-12 w-12 rounded-lg object-cover border border-gray-600" src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`} alt={product.name} />
-                            <div className="ml-4">
-                              <div className="text-sm font-medium text-white">{product.name}</div>
-                              <div className="text-sm text-gray-400">{product.description.substring(0, 40)}...</div>
+                            <img className="h-10 w-10 sm:h-12 sm:w-12 rounded-lg object-cover border border-gray-600 flex-shrink-0" src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`} alt={product.name} />
+                            <div className="ml-2 sm:ml-4 min-w-0">
+                              <div className="text-xs sm:text-sm font-medium text-white truncate">{product.name}</div>
+                              <div className="text-xs text-gray-400 truncate sm:hidden">{product.category}</div>
+                              <div className="text-xs text-gray-400 hidden sm:block">{product.description.substring(0, 40)}...</div>
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden sm:table-cell">
                           <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-900 text-blue-300">
                             {product.category}
                           </span>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-400">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-xs sm:text-sm font-semibold text-green-400">
                           {formatPrice(product.price)}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`text-sm font-medium ${
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap hidden md:table-cell">
+                          <span className={`text-xs sm:text-sm font-medium ${
                             product.stock > 0 ? 'text-green-400' : 'text-red-400'
                           }`}>
                             {product.stock > 0 ? 'Oui' : 'Non'}
                           </span>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                          <div className="flex space-x-3">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
+                          <div className="flex space-x-1 sm:space-x-3">
                             <button 
                               onClick={() => setViewingProduct(product)}
-                              className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors"
+                              className="bg-blue-600 hover:bg-blue-700 text-white p-1.5 sm:p-2 rounded-lg transition-colors"
                               title="Voir détails"
                             >
-                              <Eye className="h-4 w-4" />
+                              <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                             </button>
                             <button 
                               onClick={() => setEditingProduct(product)}
-                              className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg transition-colors"
+                              className="bg-green-600 hover:bg-green-700 text-white p-1.5 sm:p-2 rounded-lg transition-colors"
                               title="Modifier"
                             >
-                              <Edit className="h-4 w-4" />
+                              <Edit className="h-3 w-3 sm:h-4 sm:w-4" />
                             </button>
                             <button 
                               onClick={() => handleDeleteProduct((product as any)._id || product.id.toString())}
-                              className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg transition-colors"
+                              className="bg-red-600 hover:bg-red-700 text-white p-1.5 sm:p-2 rounded-lg transition-colors"
                               title="Supprimer"
                             >
-                              <Trash2 className="h-4 w-4" />
+                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                             </button>
                           </div>
                         </td>
@@ -1027,41 +1031,42 @@ export const AdminDashboard: React.FC = () => {
         {/* Orders Tab */}
         {activeTab === 'orders' && (
           <div className="space-y-6">
-            <h2 className="text-2xl font-bold text-white">Gestion des commandes</h2>
+            <h2 className="text-xl sm:text-2xl font-bold text-white">Gestion des commandes</h2>
             
             <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700">
               <div className="overflow-x-auto">
                 <table className="min-w-full divide-y divide-gray-700">
                   <thead className="bg-gray-700">
                     <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">N° Commande</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Client</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Total</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Statut</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Date</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Actions</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">N°</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Client</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden sm:table-cell">Total</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Statut</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider hidden md:table-cell">Date</th>
+                      <th className="px-3 sm:px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Actions</th>
                     </tr>
                   </thead>
                   <tbody className="bg-gray-800 divide-y divide-gray-700">
                     {orders.map((order: Order) => (
                       <tr key={order._id} className="hover:bg-gray-700 transition-colors">
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-white">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-xs sm:text-sm font-medium text-white">
                           #{order.orderNumber}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">
-                          {order.customerInfo.name}
+                        <td className="px-3 sm:px-6 py-4 text-xs sm:text-sm text-white">
+                          <div className="truncate max-w-24 sm:max-w-none">{order.customerInfo.name}</div>
+                          <div className="text-xs text-green-400 font-semibold sm:hidden">{formatPrice(order.totalAmount)}</div>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-400">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-xs sm:text-sm font-semibold text-green-400 hidden sm:table-cell">
                           {formatPrice(order.totalAmount)}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap">
                           <select 
                             id={`order-status-${order._id}`}
                             name="status"
                             autoComplete="off"
                             value={order.status}
                             onChange={(e) => handleUpdateOrderStatus(order._id, e.target.value)}
-                            className="text-xs bg-gray-700 border border-gray-600 text-white rounded px-3 py-2 focus:ring-2 focus:ring-green-500"
+                            className="text-xs bg-gray-700 border border-gray-600 text-white rounded px-1 sm:px-3 py-1 sm:py-2 focus:ring-2 focus:ring-green-500 w-full sm:w-auto"
                           >
                             <option value="En attente">En attente</option>
                             <option value="Confirmée">Confirmée</option>
@@ -1070,24 +1075,24 @@ export const AdminDashboard: React.FC = () => {
                             <option value="Annulée">Annulée</option>
                           </select>
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-400">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-xs sm:text-sm text-gray-400 hidden md:table-cell">
                           {new Date(order.createdAt).toLocaleDateString()}
                         </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                          <div className="flex space-x-3">
+                        <td className="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium">
+                          <div className="flex space-x-1 sm:space-x-3">
                             <button 
                               onClick={() => setViewingOrder(order)}
-                              className="bg-blue-600 hover:bg-blue-700 text-white p-2 rounded-lg transition-colors" 
+                              className="bg-blue-600 hover:bg-blue-700 text-white p-1.5 sm:p-2 rounded-lg transition-colors" 
                               title="Voir détails"
                             >
-                              <Eye className="h-4 w-4" />
+                              <Eye className="h-3 w-3 sm:h-4 sm:w-4" />
                             </button>
                             <button 
                               onClick={() => handleDeleteOrder(order._id)}
-                              className="bg-red-600 hover:bg-red-700 text-white p-2 rounded-lg transition-colors"
+                              className="bg-red-600 hover:bg-red-700 text-white p-1.5 sm:p-2 rounded-lg transition-colors"
                               title="Supprimer"
                             >
-                              <Trash2 className="h-4 w-4" />
+                              <Trash2 className="h-3 w-3 sm:h-4 sm:w-4" />
                             </button>
                           </div>
                         </td>
