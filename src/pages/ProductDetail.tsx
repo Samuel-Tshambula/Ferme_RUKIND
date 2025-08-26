@@ -8,6 +8,7 @@ import { Breadcrumbs } from '../components/Breadcrumbs';
 import { LoadingOverlay } from '../components/Loading';
 import { Product, ProductVariant } from '../types';
 import { formatPrice } from '../utils/currency';
+import { config } from '../config/env';
 
 export const ProductDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -85,65 +86,65 @@ export const ProductDetail: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       <Breadcrumbs />
       <LoadingOverlay isLoading={isLoading} text="Ajout au panier...">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-4 sm:py-8">
           <button
             onClick={() => navigate('/products')}
-            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-6"
+            className="flex items-center space-x-2 text-gray-600 hover:text-gray-900 mb-4 sm:mb-6 text-sm sm:text-base"
           >
-            <ArrowLeft className="h-5 w-5" />
+            <ArrowLeft className="h-4 w-4 sm:h-5 sm:w-5" />
             <span>Retour aux produits</span>
           </button>
 
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="grid md:grid-cols-2 gap-8 p-8">
+          <div className="bg-white rounded-lg sm:rounded-xl shadow-lg overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 p-4 sm:p-6 lg:p-8">
               {/* Image */}
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <img
-                  src={product.image.startsWith('http') ? product.image : `http://localhost:5500${product.image}`}
+                  src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`}
                   alt={product.name}
-                  className="w-full h-96 object-cover rounded-lg"
+                  className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg"
                 />
                 <div className="grid grid-cols-3 gap-2">
                   {[1, 2, 3].map(i => (
                     <img
                       key={i}
-                      src={product.image.startsWith('http') ? product.image : `http://localhost:5500${product.image}`}
+                      src={product.image.startsWith('http') ? product.image : `${config.API_URL}${product.image}`}
                       alt={`${product.name} ${i}`}
-                      className="w-full h-24 object-cover rounded-lg opacity-60 hover:opacity-100 cursor-pointer transition-opacity"
+                      className="w-full h-16 sm:h-20 lg:h-24 object-cover rounded-lg opacity-60 hover:opacity-100 cursor-pointer transition-opacity"
                     />
                   ))}
                 </div>
               </div>
 
               {/* Détails */}
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <div>
-                  <span className="inline-block bg-green-100 text-green-800 text-sm px-3 py-1 rounded-full mb-2">
+                  <span className="inline-block bg-green-100 text-green-800 text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full mb-2">
                     {product.category}
                   </span>
-                  <h1 className="text-3xl font-bold text-gray-900 mb-2">{product.name}</h1>
-                  <div className="flex items-center space-x-2 mb-4">
+                  <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 leading-tight">{product.name}</h1>
+                  <div className="flex items-center space-x-2 mb-3 sm:mb-4">
                     <div className="flex text-yellow-400">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-5 w-5 fill-current" />
+                        <Star key={i} className="h-4 w-4 sm:h-5 sm:w-5 fill-current" />
                       ))}
                     </div>
-                    <span className="text-gray-600">(4.8/5 - 24 avis)</span>
+                    <span className="text-gray-600 text-sm sm:text-base">(4.8/5 - 24 avis)</span>
                   </div>
                   {/* Prix selon le type de produit */}
                   {product.variants && product.variants.length > 0 ? (
-                    <div className="mb-4">
-                      <p className="text-lg text-gray-600 mb-2">Formats disponibles :</p>
+                    <div className="mb-3 sm:mb-4">
+                      <p className="text-base sm:text-lg text-gray-600 mb-2">Formats disponibles :</p>
                       <div className="space-y-2">
                         {product.variants.map((variant, index) => {
                           const minQty = variant.minOrderQuantity || 1;
                           const displayPrice = variant.price * minQty;
                           const displayUnit = minQty > 1 ? `${minQty} ${variant.unit}` : variant.unit;
                           return (
-                            <div key={index} className="text-2xl font-bold text-green-600">
-                              {formatPrice(displayPrice)} <span className="text-lg text-gray-600">pour {displayUnit}</span>
+                            <div key={index} className="text-lg sm:text-xl lg:text-2xl font-bold text-green-600">
+                              {formatPrice(displayPrice)} <span className="text-sm sm:text-base lg:text-lg text-gray-600">pour {displayUnit}</span>
                               {minQty > 1 && (
-                                <div className="text-sm text-gray-500 font-normal">
+                                <div className="text-xs sm:text-sm text-gray-500 font-normal">
                                   ({formatPrice(variant.price)} par {variant.unit})
                                 </div>
                               )}
@@ -153,27 +154,27 @@ export const ProductDetail: React.FC = () => {
                       </div>
                     </div>
                   ) : (
-                    <p className="text-4xl font-bold text-green-600 mb-4">
+                    <p className="text-2xl sm:text-3xl lg:text-4xl font-bold text-green-600 mb-3 sm:mb-4">
                       {product.minOrderQuantity && product.minOrderQuantity > 1 ? (
                         <>
                           {formatPrice(product.price * product.minOrderQuantity)} 
-                          <span className="text-lg text-gray-600">pour {product.minOrderQuantity} {product.unit}</span>
-                          <div className="text-sm text-gray-500 font-normal">
+                          <span className="text-sm sm:text-base lg:text-lg text-gray-600">pour {product.minOrderQuantity} {product.unit}</span>
+                          <div className="text-xs sm:text-sm text-gray-500 font-normal">
                             ({formatPrice(product.price)} par {product.unit})
                           </div>
                         </>
                       ) : (
                         <>
-                          {formatPrice(product.price)} <span className="text-lg text-gray-600">/ {product.unit}</span>
+                          {formatPrice(product.price)} <span className="text-sm sm:text-base lg:text-lg text-gray-600">/ {product.unit}</span>
                         </>
                       )}
                     </p>
                   )}
                 </div>
 
-                <div className="prose prose-gray">
-                  <p>{product.description}</p>
-                  <p>
+                <div className="prose prose-gray max-w-none">
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">{product.description}</p>
+                  <p className="text-sm sm:text-base text-gray-700 leading-relaxed">
                     Produit frais de notre ferme, cultivé avec soin selon nos méthodes traditionnelles. 
                     Récolté à maturité pour vous garantir le meilleur goût et la meilleure qualité nutritionnelle.
                   </p>
@@ -181,15 +182,15 @@ export const ProductDetail: React.FC = () => {
 
                 {/* Explication détaillée pour les produits avec formats */}
                 {product.variants && product.variants.length > 0 && (
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <div className="flex items-start space-x-3">
-                      <Info className="h-5 w-5 text-blue-600 mt-0.5 flex-shrink-0" />
-                      <div className="text-sm text-blue-800">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-3 sm:p-4">
+                    <div className="flex items-start space-x-2 sm:space-x-3">
+                      <Info className="h-4 w-4 sm:h-5 sm:w-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                      <div className="text-xs sm:text-sm text-blue-800">
                         <h4 className="font-bold mb-2">🛍️ Comment fonctionne ce produit :</h4>
                         <div className="space-y-2">
                           <p><strong>Ce produit est vendu en plusieurs formats.</strong> Chaque format a son propre prix et sa quantité minimum.</p>
                           
-                          <div className="bg-white p-3 rounded border-l-4 border-blue-400">
+                          <div className="bg-white p-2 sm:p-3 rounded border-l-4 border-blue-400">
                             <p className="font-medium mb-1">📋 Voici ce que cela signifie :</p>
                             <ul className="space-y-1 text-xs">
                               {product.variants.map((variant, index) => {

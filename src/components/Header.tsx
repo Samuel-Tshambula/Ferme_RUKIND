@@ -61,9 +61,9 @@ export const Header: React.FC = () => {
 
           {/* Cart and Quick Contact */}
           <div className="flex items-center space-x-2 sm:space-x-4">
-            <a href="tel:0123456789" className="hidden lg:flex items-center space-x-1 text-emerald-600 hover:text-emerald-700 transition-colors">
+            <a href="tel:+243853524899" className="hidden lg:flex items-center space-x-1 text-emerald-600 hover:text-emerald-700 transition-colors">
               <Phone className="h-4 w-4" />
-              <span className="text-sm font-medium">01 23 45 67 89</span>
+              <span className="text-sm font-medium">+243853524899</span>
             </a>
             
             <NavLink
@@ -125,7 +125,7 @@ export const Header: React.FC = () => {
             >
               Contact
             </NavLink>
-            <a href="tel:0123456789" className="lg:hidden text-xs sm:text-sm font-medium py-2 px-1 sm:px-2 text-emerald-600 hover:text-emerald-700 transition-colors text-center">
+            <a href="tel:+243853524899" className="lg:hidden text-xs sm:text-sm font-medium py-2 px-1 sm:px-2 text-emerald-600 hover:text-emerald-700 transition-colors text-center">
               Appeler
             </a>
           </div>

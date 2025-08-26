@@ -93,8 +93,8 @@ function App() {
                     <div className="space-y-2 text-gray-400">
                       <p>123 Chemin des Collines</p>
                       <p>12345 Villeneuve-sur-Collines</p>
-                      <p>Tél : 01 23 45 67 89</p>
-                      <p>Email : contact@rukindfarm.fr</p>
+                      <p>Tél : +243853524899</p>
+                      <p>Email : danruk91@gmail.com</p>
                     </div>
                   </div>
                   
